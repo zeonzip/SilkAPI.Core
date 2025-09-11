@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace NSilkAPI.API.Registries
+﻿namespace SilkAPI.API.Registries
 {
     public class Registries
     {

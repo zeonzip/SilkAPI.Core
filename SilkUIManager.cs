@@ -73,7 +73,7 @@ class UIManager_Start_Patch
 {
     static void Postfix(UIManager __instance)
     {
-        Plugin.ui_manager = SilkUIManager.init(__instance);
+        SilkApiPlugin.ui_manager = SilkUIManager.init(__instance);
     }
 }
 
@@ -82,6 +82,6 @@ class UIManager_SetState_Patch
 {
     static void Postfix(MainMenuState newState, UIManager __instance)
     {
-        Plugin.ui_manager.menu_state = (SilkUIManager.SilkMainMenuState)newState;
+        SilkApiPlugin.ui_manager.menu_state = (SilkUIManager.SilkMainMenuState)newState;
     }
 }
