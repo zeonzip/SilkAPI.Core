@@ -1,16 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using GlobalEnums;
+﻿using System.Collections.Generic;
 using HarmonyLib;
-using SilkAPI;
 using SilkAPIPlugin;
-using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-namespace NSilkAPI.API.Registries
+namespace SilkAPI.API.Registries
 {
     public class UIRegistry
     {
@@ -79,7 +72,7 @@ namespace NSilkAPI.API.Registries
 
                     Utils.PatchButtonEvents(btn.GetComponent<MenuButton>(), (a) =>
                     {
-                        Plugin.ui_manager.ui_manager.UIGoToAchievementsMenu();
+                        SilkApiPlugin.ui_manager.ui_manager.UIGoToAchievementsMenu();
                     });
 
                     var text = btn.transform.Find("Menu Button Text");
@@ -98,12 +91,12 @@ namespace NSilkAPI.API.Registries
                     Selectable selectOnUp = __instance.activeSelectables[(btn_index + count - 1) % count];
                     Selectable selectOnDown = __instance.activeSelectables[(btn_index + 1) % count];
 
-                    Plugin.Logger.LogInfo($"Linking {selectable.name} to {selectOnUp.name} and {selectOnDown.name}");
+                    SilkApiPlugin.Logger.LogInfo($"Linking {selectable.name} to {selectOnUp.name} and {selectOnDown.name}");
 
                     // Controller/Keyboard navigation support
                     if (selectable.navigation.mode == Navigation.Mode.Explicit)
                     {
-                        Plugin.Logger.LogInfo($"EXPLICIT Linking {selectable.name} to {selectOnUp.name} and {selectOnDown.name}");
+                        SilkApiPlugin.Logger.LogInfo($"EXPLICIT Linking {selectable.name} to {selectOnUp.name} and {selectOnDown.name}");
 
                         Navigation newNav = selectable.navigation;
                         newNav.selectOnUp = selectOnUp;

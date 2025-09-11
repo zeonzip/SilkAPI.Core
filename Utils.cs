@@ -26,7 +26,7 @@ namespace SilkAPI
 
         public static void PatchButtonEvents(MenuButton button, UnityAction<BaseEventData> action)
         {
-            Plugin.Logger.LogInfo("Patching button events.");
+            SilkApiPlugin.Logger.LogInfo("Patching button events.");
 
             EventTrigger trigger = button.gameObject.GetComponent<EventTrigger>();
             GameObject.Destroy(trigger);
