@@ -1,0 +1,58 @@
+### Rider ###
+**/.idea/
+**/*.iml
+
+### Visual Studio / .NET build output ###
+**/bin/
+**/obj/
+**/Debug/
+**/Release/
+**/x64/
+**/x86/
+**/ARM/
+**/ARM64/
+**/logs/
+**/log/
+
+### Rider & VS caches ###
+**/.vs/
+**/*.suo
+**/*.user
+**/*.userosscache
+**/*.sln.docstates
+
+### NuGet ###
+**/*.nupkg
+**/*.snupkg
+**/*.nuspec
+**/*.dll
+**/*.exe
+**/*.cache
+**/*.log
+**/*.pdb
+**/*.mdb
+**/*.xml
+**/*.tmp
+
+# NuGet restore results
+**/project.lock.json
+**/project.fragment.lock.json
+**/artifacts/
+**/*.nuget.props
+**/*.nuget.targets
+
+### Others ###
+**/*.swp
+**/*.bak
+**/*.old
+**/*.orig
+
+# JetBrains Rider plugin cache
+**/.idea/**/workspace.xml
+**/.idea/**/tasks.xml
+**/.idea/**/dictionaries
+**/.idea/**/shelf
+
+### OS junk ###
+**/.DS_Store
+**/Thumbs.db
