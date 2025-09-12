@@ -3,11 +3,14 @@ using SilkAPIPlugin;
 using HarmonyLib;
 using UnityEngine;
 using GlobalEnums;
+using JetBrains.Annotations;
 
 namespace SilkAPI
 {
-    internal class SilkUIManager
+    internal class SilkUIManager : MonoBehaviour
     {
+        public static SilkUIManager Instance;
+        
         internal UIManager ui_manager;
 
         internal GameObject mods_screen;
@@ -41,18 +44,14 @@ namespace SilkAPI
         internal SilkMainMenuState menu_state;
 
 
-        internal static SilkUIManager init(UIManager uiManager)
+        internal static void init(UIManager uiManager, SilkUIManager silkUIManager)
         {
-            SilkUIManager silk_ui = new SilkUIManager();
+            silkUIManager.mods_screen = GameObject.Instantiate(uiManager.achievementsMenuScreen.gameObject, uiManager.gameObject.transform.Find("UICanvas"));
+            silkUIManager.ui_manager = uiManager;
 
-            silk_ui.mods_screen = GameObject.Instantiate(uiManager.achievementsMenuScreen.gameObject, uiManager.gameObject.transform.Find("UICanvas"));
-            silk_ui.ui_manager = uiManager;
+            silkUIManager.menu_state = SilkMainMenuState.LOGO;
 
-            silk_ui.menu_state = SilkMainMenuState.LOGO;
-
-            silk_ui.init_mods_screen();
-
-            return silk_ui;
+            silkUIManager.init_mods_screen();
         }
 
         internal void init_mods_screen()
@@ -71,9 +70,12 @@ namespace SilkAPI
 [HarmonyPatch(typeof(UIManager), "Start")]
 class UIManager_Start_Patch
 {
-    static void Postfix(UIManager __instance)
+    static void Prefix(UIManager __instance)
     {
-        SilkApiPlugin.ui_manager = SilkUIManager.init(__instance);
+        __instance.gameObject.AddComponent<SilkUIManager>();
+        SilkUIManager.Instance = __instance.gameObject.GetComponent<SilkUIManager>();
+        SilkApiPlugin.ui_manager = SilkUIManager.Instance;
+        SilkUIManager.init(__instance, SilkUIManager.Instance);
     }
 }
 

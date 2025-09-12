@@ -88,13 +88,9 @@ namespace SilkAPI.API.Registries
                     Selectable selectOnUp = __instance.activeSelectables[(btn_index + count - 1) % count];
                     Selectable selectOnDown = __instance.activeSelectables[(btn_index + 1) % count];
 
-                    SilkApiPlugin.Logger.LogInfo($"Linking {selectable.name} to {selectOnUp.name} and {selectOnDown.name}");
-
                     // Controller/Keyboard navigation support
                     if (selectable.navigation.mode == Navigation.Mode.Explicit)
                     {
-                        SilkApiPlugin.Logger.LogInfo($"EXPLICIT Linking {selectable.name} to {selectOnUp.name} and {selectOnDown.name}");
-
                         Navigation newNav = selectable.navigation;
                         newNav.selectOnUp = selectOnUp;
                         newNav.selectOnDown = selectOnDown;
