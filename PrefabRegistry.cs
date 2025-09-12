@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using HarmonyLib;
 using SilkAPI;
+using SilkAPIPlugin;
 
 namespace SilkAPI
 {
@@ -23,7 +24,7 @@ namespace SilkAPI
         public MenuButton instantiate_base_btn(Transform parent)
         {
             var obj = GameObject.Instantiate(this.base_btn.gameObject, parent);
-            obj.SetActive(false);
+            obj.SetActive(true);
 
             return obj.GetComponent<MenuButton>();
         }

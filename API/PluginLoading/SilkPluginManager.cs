@@ -9,7 +9,7 @@ namespace SilkAPI.API.PluginLoading;
 public sealed class SilkPluginManager
 {
     internal static SilkPluginManager Instance { get; private set; } = new();
-    internal List<SilkPluginInfo> RegisteredPlugins { get; private set; } = null!;
+    internal List<SilkPluginInfo> RegisteredPlugins { get; private set; } = new();
 
     public SilkPluginInfo[] GetRegisteredPlugins()
     {
@@ -25,6 +25,7 @@ public sealed class SilkPluginManager
 
     public void Start()
     {
+        
         foreach (var pluginInfo in Chainloader.PluginInfos)
         {
             // Register in mod list

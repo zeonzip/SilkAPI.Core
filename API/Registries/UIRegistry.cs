@@ -63,12 +63,9 @@ namespace SilkAPI.API.Registries
             if (__instance.name == "MainMenuButtons")
             {
 
-                var base_btn = __instance.transform.Find("StartGameButton").gameObject;
-
                 foreach (string button_text in SilkApi.instance.Registries.UI.Menu.menu_buttons)
                 {
-                    var btn = UnityEngine.Object.Instantiate(base_btn, __instance.transform);
-                    Utils.StripLocalizer(btn);
+                    var btn = PrefabRegistry.instance.instantiate_base_btn(__instance.transform);
 
                     Utils.PatchButtonEvents(btn.GetComponent<MenuButton>(), (a) =>
                     {
