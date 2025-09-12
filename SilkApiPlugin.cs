@@ -3,7 +3,7 @@ using BepInEx.Logging;
 using HarmonyLib;
 using SilkAPI.API;
 using SilkAPI;
-using SilkAPI.API.PluginLoading;
+using SilkAPI.PluginLoading;
 using SilkAPI.UI;
 
 namespace SilkAPIPlugin;
