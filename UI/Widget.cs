@@ -1,7 +1,7 @@
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
-namespace SilkAPI.API.Registries.UI;
+namespace SilkAPI.UI;
 
 public abstract class SilkWidget
 {

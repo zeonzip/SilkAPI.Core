@@ -1,9 +1,6 @@
 ﻿using System.Collections.Generic;
 using HarmonyLib;
-using SilkAPI.API.Registries.UI;
-using SilkAPIPlugin;
-using UnityEngine.Events;
-using UnityEngine.EventSystems;
+using SilkAPI.UI;
 using UnityEngine.UI;
 
 namespace SilkAPI.API.Registries

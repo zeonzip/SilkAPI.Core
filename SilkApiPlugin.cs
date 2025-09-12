@@ -4,7 +4,7 @@ using HarmonyLib;
 using SilkAPI.API;
 using SilkAPI;
 using SilkAPI.API.PluginLoading;
-using SilkAPI.API.Registries.UI;
+using SilkAPI.UI;
 
 namespace SilkAPIPlugin;
 

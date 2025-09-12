@@ -1,8 +1,4 @@
 ﻿using SilkAPIPlugin;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
@@ -20,8 +16,8 @@ namespace SilkAPI
 
         public static void StripEventTrigger(GameObject obj)
         {
-            var event_trigger = obj.GetComponent<UnityEngine.EventSystems.EventTrigger>();
-            UnityEngine.Object.Destroy(event_trigger);
+            var eventTrigger = obj.GetComponent<UnityEngine.EventSystems.EventTrigger>();
+            UnityEngine.Object.Destroy(eventTrigger);
         }
 
         public static void PatchButtonEvents(MenuButton button, UnityAction<BaseEventData> action)
