@@ -8,7 +8,7 @@ using SilkAPI.API.Registries.UI;
 
 namespace SilkAPIPlugin;
 
-[BepInAutoPlugin("org.silkapi.core", MyPluginInfo.PLUGIN_NAME, "0.0.1")]
+[BepInAutoPlugin("org.silkapi.core", MyPluginInfo.PLUGIN_NAME, MyPluginInfo.PLUGIN_VERSION)]
 public partial class SilkApiPlugin : BaseUnityPlugin
 {
     internal static new ManualLogSource Logger;
@@ -23,7 +23,7 @@ public partial class SilkApiPlugin : BaseUnityPlugin
         Instance = this;
         Logger = base.Logger;
         PluginManager = new();
-        Logger.LogInfo($"Plugin org.silkapi.core is loaded!");
+        Logger.LogInfo($"{SilkApiPlugin.Name} v{SilkApiPlugin.Version} loaded!");
         Harmony.PatchAll();
 
         SilkApi.instance.Registries.UI.Menu.RegisterMenuItem(new SilkButton("Mods", evnt =>

@@ -36,6 +36,7 @@ class GameManager_Patch
 {
     public static void Prefix(GameManager __instance)
     {
+        SilkApiPlugin.Logger.LogInfo("Creating PrefabRegistry...");
         GameObject obj_registry = new GameObject("SilkApi.Core_PrefabRegistry");
         obj_registry.AddComponent<PrefabRegistry>();
         GameObject.DontDestroyOnLoad(obj_registry);

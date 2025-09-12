@@ -3,7 +3,6 @@ using SilkAPIPlugin;
 using HarmonyLib;
 using UnityEngine;
 using GlobalEnums;
-using JetBrains.Annotations;
 
 namespace SilkAPI
 {
@@ -72,6 +71,7 @@ class UIManager_Start_Patch
 {
     static void Prefix(UIManager __instance)
     {
+        SilkApiPlugin.Logger.LogInfo("Creating SilkUIManager...");
         __instance.gameObject.AddComponent<SilkUIManager>();
         SilkUIManager.Instance = __instance.gameObject.GetComponent<SilkUIManager>();
         SilkApiPlugin.UIManager = SilkUIManager.Instance;

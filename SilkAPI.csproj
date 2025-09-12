@@ -5,7 +5,7 @@
     <AssemblyName>SilkAPI.Core</AssemblyName>
     <Product>SilkAPI.Core</Product>
 	<Authors>zeon</Authors>
-    <Version>0.0.1-silksong1.0.28561</Version>
+    <Version>0.0.1</Version>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <LangVersion>latest</LangVersion>
     <RestoreAdditionalProjectSources>
