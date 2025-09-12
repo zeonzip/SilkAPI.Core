@@ -74,7 +74,7 @@ class UIManager_Start_Patch
     {
         __instance.gameObject.AddComponent<SilkUIManager>();
         SilkUIManager.Instance = __instance.gameObject.GetComponent<SilkUIManager>();
-        SilkApiPlugin.ui_manager = SilkUIManager.Instance;
+        SilkApiPlugin.UIManager = SilkUIManager.Instance;
         SilkUIManager.init(__instance, SilkUIManager.Instance);
     }
 }
@@ -84,6 +84,6 @@ class UIManager_SetState_Patch
 {
     static void Postfix(MainMenuState newState, UIManager __instance)
     {
-        SilkApiPlugin.ui_manager.menu_state = (SilkUIManager.SilkMainMenuState)newState;
+        SilkApiPlugin.UIManager.menu_state = (SilkUIManager.SilkMainMenuState)newState;
     }
 }

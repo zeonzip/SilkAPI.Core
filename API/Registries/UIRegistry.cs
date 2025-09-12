@@ -1,24 +1,18 @@
 ﻿using System.Collections.Generic;
 using HarmonyLib;
+using SilkAPI.API.Registries.UI;
 using SilkAPIPlugin;
+using UnityEngine.Events;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace SilkAPI.API.Registries
 {
+    
     public class UIRegistry
     {
         public MainMenuRegistry Menu = new MainMenuRegistry();
         public VersionShowerRegistry VersionShower = new VersionShowerRegistry();
-
-        public UIRegistry()
-        {
-
-        }
-    }
-
-    public enum MenuType
-    {
-        MainMenu, PauseMenu
     }
 
     public class MainMenuRegistry
@@ -27,11 +21,11 @@ namespace SilkAPI.API.Registries
         {
 
         }
-        internal List<string> menu_buttons = new List<string>();
+        internal List<SilkButton> menu_buttons = new();
 
-        public void RegisterMenuItem(string button_name)
+        public void RegisterMenuItem(SilkButton button)
         {
-            menu_buttons.Add(button_name);
+            menu_buttons.Add(button);
         }
 
         public MainMenuRegistry()
@@ -63,30 +57,27 @@ namespace SilkAPI.API.Registries
             if (__instance.name == "MainMenuButtons")
             {
 
-                foreach (string button_text in SilkApi.instance.Registries.UI.Menu.menu_buttons)
+                foreach (SilkButton button in SilkApi.instance.Registries.UI.Menu.menu_buttons)
                 {
                     var btn = PrefabRegistry.instance.instantiate_base_btn(__instance.transform);
-
-                    Utils.PatchButtonEvents(btn.GetComponent<MenuButton>(), (a) =>
-                    {
-                        SilkApiPlugin.ui_manager.ui_manager.UIGoToAchievementsMenu();
-                    });
+                    
+                    Utils.PatchButtonEvents(btn.GetComponent<MenuButton>(), button.Interaction);
 
                     var text = btn.transform.Find("Menu Button Text");
 
-                    btn.name = button_text.Trim() + "Button";
+                    btn.name = button.Text.Trim() + "Button";
 
-                    text.GetComponent<UnityEngine.UI.Text>().text = button_text;
+                    text.GetComponent<UnityEngine.UI.Text>().text = button.Text;
 
                     var selectable = btn.GetComponent<UnityEngine.UI.Selectable>();
 
                     __instance.activeSelectables.Add(selectable);
 
                     var count = __instance.activeSelectables.Count;
-                    var btn_index = count - 1;
+                    var btnIndex = count - 1;
 
-                    Selectable selectOnUp = __instance.activeSelectables[(btn_index + count - 1) % count];
-                    Selectable selectOnDown = __instance.activeSelectables[(btn_index + 1) % count];
+                    Selectable selectOnUp = __instance.activeSelectables[(btnIndex + count - 1) % count];
+                    Selectable selectOnDown = __instance.activeSelectables[(btnIndex + 1) % count];
 
                     // Controller/Keyboard navigation support
                     if (selectable.navigation.mode == Navigation.Mode.Explicit)

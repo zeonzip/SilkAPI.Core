@@ -4,6 +4,7 @@ using HarmonyLib;
 using SilkAPI.API;
 using SilkAPI;
 using SilkAPI.API.PluginLoading;
+using SilkAPI.API.Registries.UI;
 
 namespace SilkAPIPlugin;
 
@@ -11,7 +12,7 @@ namespace SilkAPIPlugin;
 public partial class SilkApiPlugin : BaseUnityPlugin
 {
     internal static new ManualLogSource Logger;
-    internal static SilkUIManager ui_manager;
+    internal static SilkUIManager UIManager;
     public static SilkApiPlugin Instance;
     public static SilkPluginManager PluginManager;
     
@@ -25,7 +26,11 @@ public partial class SilkApiPlugin : BaseUnityPlugin
         Logger.LogInfo($"Plugin org.silkapi.core is loaded!");
         Harmony.PatchAll();
 
-        SilkApi.instance.Registries.UI.Menu.RegisterMenuItem("Mods");
+        SilkApi.instance.Registries.UI.Menu.RegisterMenuItem(new SilkButton("Mods", evnt =>
+        {
+            // placeholder
+            Logger.LogInfo($"Mods button interacted with!");
+        }));
         SilkApi.instance.Registries.UI.VersionShower.RegisterVersionString($"SilkAPI {MyPluginInfo.PLUGIN_VERSION}");
     }
 
