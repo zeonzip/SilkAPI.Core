@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Reflection;
 using BepInEx.Bootstrap;
 using BepInEx.Logging;
-using SilkAPI.API.PluginLoading.Events;
+using SilkAPI.PluginLoading.Events;
 using SilkAPIPlugin;
 
-namespace SilkAPI.API.PluginLoading;
+namespace SilkAPI.PluginLoading;
 
 public sealed class SilkPluginManager
 {

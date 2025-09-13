@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Reflection;
 
-namespace SilkAPI.API.PluginLoading.Events;
+namespace SilkAPI.PluginLoading.Events;
 
 public class PluginLoadedEventArgs : EventArgs
 {
