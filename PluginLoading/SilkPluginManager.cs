@@ -1,15 +1,17 @@
+using System;
 using System.Collections.Generic;
 using System.Reflection;
 using BepInEx.Bootstrap;
 using BepInEx.Logging;
+using SilkAPI.API.PluginLoading.Events;
 using SilkAPIPlugin;
 
-namespace SilkAPI.PluginLoading;
+namespace SilkAPI.API.PluginLoading;
 
 public sealed class SilkPluginManager
 {
     internal static SilkPluginManager Instance { get; private set; } = new();
-    internal List<SilkPluginInfo> RegisteredPlugins { get; private set; } = new();
+    internal List<SilkPluginInfo> RegisteredPlugins { get; private set; }
 
     public SilkPluginInfo[] GetRegisteredPlugins()
     {
@@ -21,11 +23,22 @@ public sealed class SilkPluginManager
     {
         Instance = this;
         _log = SilkApiPlugin.Logger;
+        RegisteredPlugins = new();
     }
 
-    public void Start()
+    public static event EventHandler<PluginLoadedEventArgs> SilkPluginLoaded = PluginLoaded;
+    public static event EventHandler FinishedPluginLoading = FinishedLoading;
+
+    static void FinishedLoading(object sender, EventArgs e)
     {
         
+    }
+    static void PluginLoaded(object sender, EventArgs e)
+    {
+        
+    }
+    public void Start()
+    {
         foreach (var pluginInfo in Chainloader.PluginInfos)
         {
             // Register in mod list
@@ -58,13 +71,15 @@ public sealed class SilkPluginManager
             var metadata = pluginInfo.Value.Metadata;
             RegisteredPlugins.Add(info);
             _log.LogInfo($"Loaded plugin {metadata.Name} v{metadata.Version}");
+            SilkPluginLoaded?.Invoke(this, new PluginLoadedEventArgs(assembly, info));
         }
 
         if (RegisteredPlugins.Count == 0)
         {
             _log.LogWarning("No plugins were loaded");
         }
-
+        
+        FinishedPluginLoading?.Invoke(this, EventArgs.Empty);
     }
 }
 
